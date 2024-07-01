@@ -45,6 +45,11 @@
 
   outputs = { self, nixpkgs, ... }@inputs:
     {
-      homeManagerModules.shell = { config, lib, pkgs, ... }: (import ./modules/shell { inherit config lib pkgs inputs; });
+      homeManagerModules.shell = (import ./modules/shell {
+      	pkgs = import nixpkgs {
+	  system = "x86_64-linux";
+	};
+	inherit inputs;
+      });
     };
 }
