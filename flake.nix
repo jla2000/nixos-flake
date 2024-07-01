@@ -46,7 +46,9 @@
   outputs = { self, nixpkgs, ... }@inputs:
     {
       homeManagerModules.shell = {
-        imports = [ ./modules/shell ];
+        imports = [ 
+	  import ./modules/shell { inherit inputs; }
+	];
       };
     };
 }
