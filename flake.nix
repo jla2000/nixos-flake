@@ -44,47 +44,9 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
-    let
-      inherit (self) outputs;
-      system = "x86_64-linux";
-
-      overlays = [
-        (final: prev:
-          let
-            oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-              name = "oil.nvim";
-              src = inputs.oil-nvim;
-            };
-            huez-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-              name = "huez.nvim";
-              src = inputs.huez-nvim;
-            };
-            nerdy-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-              name = "nerdy.nvim";
-              src = inputs.nerdy-nvim;
-            };
-            markview-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-              name = "markview.nvim";
-              src = inputs.markview-nvim;
-            };
-          in
-          {
-            helix = inputs.helix.packages.${final.system}.default;
-            vimPlugins = prev.vimPlugins // {
-              inherit oil-nvim;
-              inherit huez-nvim;
-              inherit nerdy-nvim;
-              inherit markview-nvim;
-            };
-          })
-        inputs.lz-n.outputs.overlays.default
-      ];
-    in
     {
       homeManagerModules.shell = {
         imports = [ ./modules/shell ];
       };
-
-      overlays.default = overlays;
     };
 }

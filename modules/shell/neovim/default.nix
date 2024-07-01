@@ -21,6 +21,7 @@ let
     name = "markview.nvim";
     src = inputs.markview-nvim;
   };
+  lz-nvim = inputs.lz-n.packages.lz-n-vimPlugin;
 in
 {
   programs.neovim = {
