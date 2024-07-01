@@ -1,8 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nur.url = "github:nix-community/nur";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,11 +55,8 @@
       overlays = [
         (final: prev:
           let
-            lz-n = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-              name = "lz.n";
-              src = inputs.lz-n;
-            };
-            oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+            lz-n = inputs.lz-n.packages.default;
+	    oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
               name = "oil.nvim";
               src = inputs.oil-nvim;
             };
@@ -104,39 +99,7 @@
       };
     in
     {
-      imports = [ inputs.pre-commit-hooks.flakeModule ];
-      pre-commit.settings = { hooks.nixpkgs-fmt.enable = true; };
-
-      nixosConfigurations."zephyrus" = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          inherit pkgs;
-        };
-        modules = [
-          ./hosts/zephyrus/configuration.nix
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "bak";
-            home-manager.users.jan = import ./hosts/zephyrus/home.nix;
-          }
-        ];
-      };
-
-      homeConfigurations."jlafferton@DE18314NB" = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./hosts/dell/home.nix ];
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
-      homeConfigurations."jan@muh" = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./hosts/muh/home.nix ];
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
-
-      nixosModules.nixos-dotfiles = {
+      homeManagerModules.shell = {
         imports = [ ./modules/shell ];
       };
 
