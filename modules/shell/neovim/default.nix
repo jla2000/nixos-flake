@@ -26,7 +26,7 @@ in
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      inputs.lz-n.packages.lz-n-vimPlugin
+      lz-n
       telescope-nvim
       telescope-fzf-native-nvim
       telescope-frecency-nvim
