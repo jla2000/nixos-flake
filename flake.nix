@@ -47,7 +47,9 @@
     {
       homeManagerModules.shell = {
         imports = [ 
-	  (import ./modules/shell { inherit inputs; })
+	  ({ pkgs, ... }: pkgs.callPackage ./modules/shell/default.nix {
+	     inherit inputs;
+	  })
 	];
       };
     };
