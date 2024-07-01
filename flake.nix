@@ -47,7 +47,7 @@
     {
       homeManagerModules.shell = {
         imports = [ 
-	  import ./modules/shell { inherit inputs; }
+	  (import ./modules/shell { inherit inputs; })
 	];
       };
     };
