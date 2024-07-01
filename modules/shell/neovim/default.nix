@@ -5,19 +5,19 @@ let
     name = "treesitter-parsers";
     paths = treesitter.dependencies;
   };
-  oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+  oil-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "oil.nvim";
     src = inputs.oil-nvim;
   };
-  huez-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+  huez-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "huez.nvim";
     src = inputs.huez-nvim;
   };
-  nerdy-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+  nerdy-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "nerdy.nvim";
     src = inputs.nerdy-nvim;
   };
-  markview-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+  markview-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "markview.nvim";
     src = inputs.markview-nvim;
   };
