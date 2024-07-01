@@ -1,16 +1,33 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
     paths = treesitter.dependencies;
   };
+  let
+    oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+      name = "oil.nvim";
+      src = inputs.oil-nvim;
+    };
+    huez-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+      name = "huez.nvim";
+      src = inputs.huez-nvim;
+    };
+    nerdy-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+      name = "nerdy.nvim";
+      src = inputs.nerdy-nvim;
+    };
+    markview-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+      name = "markview.nvim";
+      src = inputs.markview-nvim;
+    };
 in
 {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      pkgs.lz-n-vimPlugin
+      inputs.lz-n.packages.lz-n-vimPlugin;
       telescope-nvim
       telescope-fzf-native-nvim
       telescope-frecency-nvim
