@@ -10,7 +10,7 @@ in
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      lz-n-vimPlugin
+      pkgs.lz-n-vimPlugin
       telescope-nvim
       telescope-fzf-native-nvim
       telescope-frecency-nvim
