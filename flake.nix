@@ -83,7 +83,6 @@
             };
           })
         inputs.lz-n.outputs.overlays.default
-        inputs.nur.outputs.overlay
       ];
     in
     {
