@@ -55,7 +55,6 @@
       overlays = [
         (final: prev:
           let
-            lz-n = inputs.lz-n.packages.default;
 	    oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
               name = "oil.nvim";
               src = inputs.oil-nvim;
@@ -76,7 +75,6 @@
           {
             helix = inputs.helix.packages.${final.system}.default;
             vimPlugins = prev.vimPlugins // {
-              inherit lz-n;
               inherit oil-nvim;
               inherit huez-nvim;
               inherit nerdy-nvim;
@@ -84,7 +82,6 @@
             };
           })
         inputs.lz-n.outputs.overlays.default
-        inputs.nur.outputs.overlay
       ];
 
       pkgs = import nixpkgs {
