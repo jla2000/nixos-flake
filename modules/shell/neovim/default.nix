@@ -5,23 +5,22 @@ let
     name = "treesitter-parsers";
     paths = treesitter.dependencies;
   };
-  let
-    oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-      name = "oil.nvim";
-      src = inputs.oil-nvim;
-    };
-    huez-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-      name = "huez.nvim";
-      src = inputs.huez-nvim;
-    };
-    nerdy-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-      name = "nerdy.nvim";
-      src = inputs.nerdy-nvim;
-    };
-    markview-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
-      name = "markview.nvim";
-      src = inputs.markview-nvim;
-    };
+  oil-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+    name = "oil.nvim";
+    src = inputs.oil-nvim;
+  };
+  huez-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+    name = "huez.nvim";
+    src = inputs.huez-nvim;
+  };
+  nerdy-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+    name = "nerdy.nvim";
+    src = inputs.nerdy-nvim;
+  };
+  markview-nvim = nixpkgs.legacyPackages.${final.system}.vimUtils.buildVimPlugin {
+    name = "markview.nvim";
+    src = inputs.markview-nvim;
+  };
 in
 {
   programs.neovim = {
