@@ -44,7 +44,11 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
+    let
+      system = "x86-64-linux";
+    in
     {
-      homeManagerModules.shell = import ./modules/shell inputs;
+      homeManagerModules.${sytem}.shell = nixpkgs.legacyPackages.${system}.callPackage../modules/shell { inherit inputs;
+      };
     };
 }
